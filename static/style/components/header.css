@@ -1,0 +1,81 @@
+.header{
+    background-color: #fff;
+    padding: .4rem;
+    overflow: hidden;
+    height: 3.2rem;
+    border-bottom:1px solid #eee;
+
+}
+.header-center{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.header-logo{
+    color: black;
+    font-size: 1.4rem;
+    text-align: left;
+}
+.header-txt{
+    font-size: 0.6rem;
+    color: #999;
+    display: inline-block;
+    padding-left: 0.3rem;
+}
+
+.memu-div {
+    padding-top: 10px;
+}
+.memu-div a{
+    color:#999 !important;
+    font-size: 1.2rem;
+}
+
+.author-div{
+    text-align: center;
+    padding: 1rem !important;
+
+}
+.author-div div{
+    margin-bottom: 1rem;
+
+}
+.author-introduction{
+    font-size:.8rem;
+    color: #999;
+
+}
+.account{
+    background-color: #999;
+    margin-left: .5rem !important;
+    margin-right: .5rem !important;
+}
+.author-name{
+    font-size: 1rem;
+    color: #1890ff;
+}
+.author-tag{
+    line-height: 27px;
+}
+
+.ant-avatar-image{
+    background: #ccc !important;
+}
+.slogn{
+    height: 40px;
+    color: #999;
+}
+.ad-div{
+    margin-top: .5rem;
+}
+.ad-div div{
+    border-radius: .3rem;
+    margin-bottom: .2rem;
+    overflow: hidden;
+}
+.footer-div{
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    color:#888;
+    height: 100px;
+}
