@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import '../static/style/components/header.css';
 import {Row, Col, Menu} from 'antd';
 import { ToolOutlined, FieldBinaryOutlined, HomeOutlined, MehOutlined, CalculatorOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import Router from "next/router";
 import servicePath from '../config/apiUrl';
 import '../pages/i18n'
+import '../static/style/components/header.css';
 import { useTranslation, Trans, Translation } from 'react-i18next'
-import Router from "next/router";
 
 const Navigator = ()=> {
     const { t } = useTranslation();
-    const [navArray , setNavArray] = useState([])
+    const [navArray , setNavArray] = useState([]);
 
     useEffect( () => {
         const sendRequest = async () => {
@@ -20,7 +20,7 @@ const Navigator = ()=> {
             } catch (err) {
                 console.log(err);
             }
-        }
+        };
 
         sendRequest();
     },[]);
@@ -31,9 +31,8 @@ const Navigator = ()=> {
         } else {
             Router.push('/list?id=' + e.key);
         }
-     }
+     };
 
-    // }
     return (
         <div className='header'>
             <div className='header-center'>
@@ -45,7 +44,6 @@ const Navigator = ()=> {
                 <Col xs={0} sm={0} md={13}>
                     <Menu mode='horizontal'>
                         { navArray.map((item) => {
-                            console.log(item)
                             return (
                                 <Menu.Item key={item.id}  onClick={handleClick} >
                                     <HomeOutlined/>
