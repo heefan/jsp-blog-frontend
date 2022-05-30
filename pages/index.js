@@ -1,33 +1,25 @@
 import React, { useState } from 'react'
 import { Row, Col, List, Spin, Breadcrumb } from 'antd'
 import { CalendarOutlined,  RightCircleOutlined, FireFilled, VideoCameraOutlined} from '@ant-design/icons';
-import Head from 'next/head'
+import { useTranslation, Trans, Translation } from 'react-i18next'
 import 'antd/dist/antd.css'
 import '../static/style/pages/index.css'
-import Header from '../components/Header'
+import Navigator from '../components/Navigator'
 import Author from '../components/Author'
 import Footer from '../components/Footer';
-import Advert from '../components/Advert'
-import axios from "axios";
 import Link from 'next/link'
-import servicePath from "../config/apiUrl";
-
 import marked from 'marked'
+import Head from 'next/head'
+import axios from "axios";
+import servicePath from "../config/apiUrl";
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 import './i18n';
-import { useTranslation, Trans, Translation } from 'react-i18next'
-
 
 const Home = (list) => {
-    // localization
     const { t } = useTranslation();
-
-    //
     const [ articleList ] = useState(list.data);
     const [ loading, setLoading ] = useState(false)
-
-    // markdown
     const renderer = new marked.Renderer();
 
     marked.setOptions({
@@ -54,17 +46,12 @@ const Home = (list) => {
             <Head>
                 <title>Home</title>
             </Head>
-            <Header />
+            <Navigator />
             <Row className="comm-main" type="flex" justify="center">
                 <Col className="comm-left" xs={24} sm={24} md={18} >
                     <List
-                        // header={<div>New Post</div>}
                         itemLayout = "vertical"
                         dataSource = { articleList }
-
-                        /*
-                         * @ article: from database
-                         */
                         renderItem = { article => (
                             <List.Item>
                                 <Spin spinning={ loading } >
@@ -74,9 +61,9 @@ const Home = (list) => {
                                         </Link>
                                     </div>
                                     <div className="list-icon">
-                                        <span><CalendarOutlined/>{article.lastUpdated}</span>
-                                        <span><VideoCameraOutlined/>{article.typeName}</span>
-                                        <span><FireFilled />{article.viewCount} </span>
+                                        <span><CalendarOutlined/>{article.last_updated}</span>
+                                        <span><VideoCameraOutlined/>{article.category_name}</span>
+                                        <span><FireFilled />{article.view_count} </span>
                                     </div>
                                     <div className="list-context"
                                          dangerouslySetInnerHTML={{__html: marked(article.brief)}}>
@@ -98,22 +85,18 @@ const Home = (list) => {
 
                 <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
                     <Author/>
-                    {/*<Advert />*/}
                 </Col>
             </Row>
-
             <Footer/>
         </div>
     )
 }
 
-// Service Call
-// getArticleList: read article table from backend database
 Home.getInitialProps = async () => {
     const promise = new Promise((resolve)=> {
         axios(servicePath.getArticleList)
             .then((res) => {
-                // console.log('response: ', res.data.data)
+                console.log('response: ', res.data.data)
                 resolve(res.data)
             })
     });

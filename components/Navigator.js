@@ -4,34 +4,29 @@ import {Row, Col, Menu} from 'antd';
 import { ToolOutlined, FieldBinaryOutlined, HomeOutlined, MehOutlined, CalculatorOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import servicePath from '../config/apiUrl';
-import Router from 'next/router'
 import '../pages/i18n'
 import { useTranslation, Trans, Translation } from 'react-i18next'
 
-
-const Header = ()=> {
+const Navigator = ()=> {
     const { t } = useTranslation();
     const [navArray , setNavArray] = useState([])
-    useEffect(()=>{
-        const fetchData = async ()=>{
-            const result= await axios(servicePath.getTypeInfo).then(
-                (res)=>{
-                    setNavArray(res.data.data)
-                    return res.data.data
-                }
-            )
-            setNavArray(result)
+
+    const request = async () => {
+        try {
+            const response = await axios.get(servicePath.getCategoryList);
+            setNavArray(response.data)
+        } catch (err) {
+            console.error(err);
         }
-        fetchData()
-    },[])
+    }
 
     const handleClick = (e) => {
         if(e.key == 0) {
-            Router.push('/');
+            // Router.push('/');
         } else {
-            Router.push('/list?id=' + e.key);
+            // Router.push('/list?id=' + e.key);
         }
-    }
+     }
 
     return (
         <div className='header'>
@@ -43,7 +38,7 @@ const Header = ()=> {
                 </Col>
                 <Col xs={0} sm={0} md={13}>
                     <Menu mode='horizontal'>
-                        <Menu.Item key='0' onClick={handleClick}>
+                        <Menu.Item key='0' onClick={ handleClick }>
                             <HomeOutlined/>
                             {t('nav_homepage')}
                         </Menu.Item>
@@ -81,4 +76,4 @@ const Header = ()=> {
         </div>
     );
 }
-export default Header;
+export default Navigator;

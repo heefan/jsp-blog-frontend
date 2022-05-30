@@ -1,14 +1,13 @@
-const ipUrl = 'http://127.0.0.1:7001/default/'
+const ipUrl = 'http://127.0.0.1:7001/'
 
 /*!
  * @brief: bolg server calls
  */
 let servicePath = {
-    getArticleList: ipUrl + 'getArticleList',
-    getArticleById: ipUrl + 'getArticleById/',
-    getCategory: ipUrl + 'getCategory',
-    getListById: ipUrl + 'getListById/',
+    getArticleList: ipUrl + 'article/list',
+    getCategoryList: ipUrl + 'category/list'
+    // getArticleById: ipUrl + 'article/:id',
+    // getListById: ipUrl + 'article/:id',
 }
-
 
 export default servicePath;

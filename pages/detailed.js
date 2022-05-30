@@ -3,7 +3,7 @@ import Head from 'next/head'
 import {Row, Col, Breadcrumb, Affix} from 'antd'
 
 import {CalendarOutlined, VideoCameraAddOutlined, FireFilled, VideoCameraOutlined} from '@ant-design/icons';
-import Header from '../components/Header'
+import Navigator from '../components/Navigator'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
@@ -49,7 +49,7 @@ const Detailed = (props) => {
             <Head>
                 <title>博客详细页</title>
             </Head>
-            <Header/>
+            <Navigator/>
             <Row className="comm-main" type="flex" justify="center">
                 <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}>
                     <div>
@@ -94,43 +94,43 @@ const Detailed = (props) => {
         </div>
     )
 }
-
-Detailed.getInitialProps = async(context)=>{
-    let date=new Date();
-    let month=date.getMonth();
-    let day=date.getDate();
-
-    let  hour=date.getHours();
-    let minute=date.getMinutes();
-    let second=date.getSeconds();
-    let time=month+'/'+day+'/'+hour+':'+minute+':'+second
-
-    console.log('----->'+time+':Visit the details page,parameter='+context.query.id)
-    //把ID强制转换成数字
-    let id =parseInt(context.query.id)
-
-    const promise = new Promise((resolve)=>{
-        if(id){
-            axios(servicePath.getArticleById + id).then(
-                (res)=>{
-                    // console.log(title)
-                    if(res.data.data=='id错误'){
-                        console.log('ERROR.......')
-                        resolve({content:'id ERROR'})
-                    }else{
-                        resolve(res.data.data[0])
-                    }
-
-                }
-            )
-        }else{
-            console.log('error......')
-            resolve({content:'Id Error'})
-
-        }
-    })
-    return await promise
-}
+//
+// Detailed.getInitialProps = async(context)=>{
+//     let date=new Date();
+//     let month=date.getMonth();
+//     let day=date.getDate();
+//
+//     let  hour=date.getHours();
+//     let minute=date.getMinutes();
+//     let second=date.getSeconds();
+//     let time=month+'/'+day+'/'+hour+':'+minute+':'+second
+//
+//     console.log('----->'+time+':Visit the details page,parameter='+context.query.id)
+//     //把ID强制转换成数字
+//     let id =parseInt(context.query.id)
+//
+//     const promise = new Promise((resolve)=>{
+//         if(id){
+//             axios(servicePath.getArticleById + id).then(
+//                 (res)=>{
+//                     // console.log(title)
+//                     if(res.data.data=='id错误'){
+//                         console.log('ERROR.......')
+//                         resolve({content:'id ERROR'})
+//                     }else{
+//                         resolve(res.data.data[0])
+//                     }
+//
+//                 }
+//             )
+//         }else{
+//             console.log('error......')
+//             resolve({content:'Id Error'})
+//
+//         }
+//     })
+//     return await promise
+// }
 
 
 export default Detailed

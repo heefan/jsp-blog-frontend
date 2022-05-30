@@ -2,7 +2,7 @@
 import React,{useState, useEffect} from 'react';
 import Head from 'next/head';
 import {Row, Col , List ,Breadcrumb  } from 'antd';
-import Header from '../components/Header';
+import Navigator from '../components/Navigator';
 import Author from '../components/Author';
 import Advert from '../components/Advert';
 import Footer from '../components/Footer';
@@ -48,7 +48,7 @@ const ArticleList = (list) =>{
                 <title>Home</title>
             </Head>
 
-            <Header />
+            <Navigator />
             <Row className="comm-main" type="flex" justify="center">
                 <Col className="comm-left" xs={24} sm={24} md={18} >
                     <div>
@@ -101,16 +101,16 @@ const ArticleList = (list) =>{
 }
 
 
-ArticleList.getInitialProps = async (context) => {
-    let id = context.query.id;
-    const promise = new Promise((resolve)=> {
-        axios(servicePath.getListById + id)
-            .then((res) => {
-                resolve(res.data)
-            })
-    });
-    return await promise;
-}
+// ArticleList.getInitialProps = async (context) => {
+//     let id = context.query.id;
+//     const promise = new Promise((resolve)=> {
+//         axios(servicePath.getListById + id)
+//             .then((res) => {
+//                 resolve(res.data)
+//             })
+//     });
+//     return await promise;
+// }
 
 
 export default ArticleList
