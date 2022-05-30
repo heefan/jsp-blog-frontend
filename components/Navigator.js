@@ -6,6 +6,7 @@ import axios from 'axios';
 import servicePath from '../config/apiUrl';
 import '../pages/i18n'
 import { useTranslation, Trans, Translation } from 'react-i18next'
+import Router from "next/router";
 
 const Navigator = ()=> {
     const { t } = useTranslation();
